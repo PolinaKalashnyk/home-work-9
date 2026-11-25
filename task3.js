@@ -1,14 +1,49 @@
-/*
-Створіть тип об'єктів Суматор, з наступним функціоналом:
-1. Приватна властивість __firstNumber;
-2. Приватна властивість __secondNumber;
-3. Публічна властивість result; 
-4. Приватний метод __calc(), який записує в result суму
-властивостей __firstNumber та __secondNumber; 
-5. Єдині методи геттер-сеттер для властивостей __firstNumber і __secondNumber,
-під час роботи методів у якості сеттерів, повинна відбуватися валідація
-(встановлювати можна лише значення типу Number), якщо валідація
-відбулась успішно, повинен викликатись метод __calc().
-Виходить, що при успішній установці чи __firstNumber
-чи __secondNumber, відбувається перерахунок result. 
-*/
+
+class Adder {
+    #firstNumber = 0;
+    #secondNumber = 0;
+
+    result = 0;
+
+    calc() {
+        this.result = this.#firstNumber + this.#secondNumber;
+    }
+
+    firstNumber(value) {
+        if (value === undefined) {
+            return this.#firstNumber;
+        } else if (typeof value === "number") {
+            this.#firstNumber = value;
+            this.calc();
+        } else {
+            console.log("Error! Enter a number.");
+        }
+    }
+
+    secondNumber(value) {
+        if (value === undefined) {
+            return this.#secondNumber;
+        } else if (typeof value === "number") {
+            this.#secondNumber = value;
+            this.calc();
+        } else {
+            console.log("Error! Enter a number.");
+        }
+    }
+}
+
+let sum = new Adder();
+
+sum.firstNumber(10);
+sum.secondNumber(20);
+
+console.log(sum.result);
+
+sum.firstNumber(50);
+console.log(sum.result);
+
+sum.secondNumber(30);
+console.log(sum.result);
+
+sum.firstNumber("Hello");
+console.log(sum.result);
