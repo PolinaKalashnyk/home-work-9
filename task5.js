@@ -1,10 +1,32 @@
-/**
-Створіть тип об'єктів Квадрат, визначте захищену властивість для
-збереження значення сторони. Для доступу до цієї властивості
-визначте необхідний метод/методи. Визначте також публічний метод,
-який повертає його периметр. На основі цього типу створіть
-тип Куб та перевизначте метод отримання периметра.
-Реалізуйте 2 версії поточного завдання, використовуючи такі способи перевизначення:
-1. Без розширення (повністю перевизначити метод батьківського типу);
-2. З розширенням (використовувати результат методу батьківського типу  для подальших розрахунків).
- */
+
+class Square {
+    constructor(side) {
+        this._side = side;
+    }
+
+    getSide() {
+        return this._side;
+    }
+
+    setSide(value) {
+        if (typeof value === "number" && value > 0) {
+            this._side = value;
+        }
+    }
+
+    getPerimeter() {
+        return this._side * 4;
+    }
+}
+
+class Cube extends Square {
+    getPerimeter() {
+        return this._side * 12;
+    }
+}
+
+let square = new Square(5);
+let cube = new Cube(5);
+
+console.log("Square perimeter:", square.getPerimeter());
+console.log("Cube perimeter:", cube.getPerimeter());
