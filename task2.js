@@ -2,46 +2,36 @@
 class MP3Player {
     #volume = 50;
 
-    // 1. Separate getter and setter
-
     getVolume() {
         return this.#volume;
     }
 
-    setVolume(value) {
-        if (typeof value === "number" && value >= 0 && value <= 100) {
-            this.#volume = value;
+    setVolume(volume) {
+        if (volume >= 0 && volume <= 100 && typeof volume === "number") {
+            this.#volume = volume;
         } else {
-            console.log("Volume must be between 0 and 100!");
+            console.log("Wrong volume!");
         }
     }
-
-    // 2. Combined getter-setter
 
     volume(value) {
         if (value === undefined) {
             return this.#volume;
-        }
-
-        if (typeof value === "number" && value >= 0 && value <= 100) {
+        } else if (value >= 0 && value <= 100 && typeof value === "number") {
             this.#volume = value;
         } else {
-            console.log("Volume must be between 0 and 100!");
+            console.log("Wrong volume!");
         }
     }
 }
 
-// Create MP3 player
-const player = new MP3Player();
+let player = new MP3Player();
 
-// Separate getter and setter
-player.setVolume(80);
-console.log("Volume:", player.getVolume());
+player.setVolume(70);
+console.log(player.getVolume());
 
-// Combined getter-setter
 player.volume(40);
-console.log("Volume:", player.volume());
+console.log(player.volume());
 
-// Validation
-player.setVolume(120);
-console.log("Volume:", player.getVolume());
+player.setVolume(150);
+console.log(player.getVolume());
